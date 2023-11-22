@@ -1,4 +1,4 @@
-use std::{f32::consts, f64::consts::PI, thread, time::Duration};
+use std::{f64::consts::PI, thread, time::Duration};
 
 const WINDOW_WIDT: usize = 80;
 const WINDOW_HEIGHT: usize = 22;
@@ -21,7 +21,7 @@ fn torus(rx: f64) -> Vec<Vec<char>> {
     let mut v: Vec<Vec<char>> = vec![vec![' '; WINDOW_WIDT]; WINDOW_HEIGHT];
     let mut front: Vec<Vec<f64>> = vec![vec![0.0; WINDOW_WIDT]; WINDOW_HEIGHT];
     let mut th: f64 = 0.0;
-    let threthold = 2.0 * (std::f32::consts::PI as f64);
+    let threthold = 2.0 * PI;
     let mut min = 10.0;
     let mut max = -1.0;
     while th < threthold {
@@ -38,7 +38,6 @@ fn torus(rx: f64) -> Vec<Vec<char>> {
             let x = 30.0 * d * t * cfi + 40.0;
             let y = 15.0 * d * e + 12.0;
             let p = cx * sfi * cth - sx * sfi * cth - sx * sfi * cth - cx * sth;
-            // println!("x: {}, y: {}", x, y);
             if p > max {
                 max = p;
             }
@@ -62,22 +61,17 @@ fn torus(rx: f64) -> Vec<Vec<char>> {
         }
         th += 0.02;
     }
-    // println!("min: {}, max: {}", min, max);
     v
 }
 
 fn main() {
     let mut rx = 0.0;
     loop {
-        if rx > std::f32::consts::PI as f64 {
+        if rx > PI {
             rx = 0.0;
         };
         rx += 0.04;
         show(&torus(rx));
         thread::sleep(Duration::from_micros(30000))
     }
-    //let v = torus(rx);
-    //for cs in v.iter() {
-    //    println!("{}", cs.iter().collect::<String>())
-    //}
 }
