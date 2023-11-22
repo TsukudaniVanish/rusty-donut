@@ -1,6 +1,6 @@
 # Rusty Donut 
 
-Just print a donut for fun!
+Just print a rotating 3d donut  for fun!
 
 ## how to run 
 
